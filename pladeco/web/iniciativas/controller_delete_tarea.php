@@ -24,8 +24,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $pdo->commit();
 
         // Redirigir a la página de listado de tareas con mensaje de éxito
-
-        // Redirigir a la página de listado de tareas con mensaje de éxito
         header("Location: index.php?msg=La tarea ha sido eliminada correctamente.");
         exit;
     } catch (Exception $e) {

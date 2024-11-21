@@ -29,6 +29,21 @@ if (isset($_SESSION['u_usuario'])) {
         <?php include('../../layout/head.php'); ?>
         <title>Tareas Asignadas | PLADECO</title>
         <style>
+            .table td,
+            .table th {
+                white-space: normal;
+                /* Cambiar de 'nowrap' a 'normal' para que el texto se ajuste */
+            }
+
+            .table td.descripcion {
+                white-space: normal;
+                /* Asegura que el texto de descripción se ajuste */
+                word-wrap: break-word;
+                /* Permite el ajuste de palabras largas */
+                overflow-wrap: break-word;
+                /* Compatibilidad adicional */
+            }
+
             .verification-icon {
                 position: relative;
                 cursor: pointer;
@@ -51,6 +66,11 @@ if (isset($_SESSION['u_usuario'])) {
                 border-radius: 5px;
                 white-space: nowrap;
                 z-index: 200000;
+            }
+
+            tr {
+                height: auto;
+                /* Ajusta automáticamente la altura de las filas */
             }
 
             .verification-icon:hover .verification-tooltip {
@@ -137,7 +157,9 @@ if (isset($_SESSION['u_usuario'])) {
                                                                 <?php endif; ?>
                                                             </td>
                                                             <td><?php echo htmlspecialchars($tarea['nombre_tarea']); ?></td>
-                                                            <td><?php echo htmlspecialchars($tarea['descripcion_tarea']); ?>
+                                                            <td class="descripcion">
+                                                                <?php echo htmlspecialchars($tarea['descripcion_tarea']); ?>
+                                                            </td>
                                                             </td>
                                                             <td><?php echo htmlspecialchars($tarea['fecha_inicio']); ?></td>
                                                             <td><?php echo htmlspecialchars($tarea['fecha_fin']); ?></td>

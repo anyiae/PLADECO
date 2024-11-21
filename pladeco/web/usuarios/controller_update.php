@@ -17,7 +17,7 @@ $fechaHora = date("Y-m-d h:i:s");
 $sentencia = $pdo->prepare("UPDATE usuarios SET nombre='$nombre',apellido='$apellido',cargo='$cargo',cargo_pladeco='$cargo_pladeco',departamento='$departamento',password='$password', fyh_actualizacion='$fechaHora' WHERE email='$email' ");
 //print_r($sentencia);
 if ($sentencia->execute()) {
-    header("Location: " . $URL . "/web/administradores/");
+    header("Location: " . $URL . "/web/usuarios/");
 } else {
     //echo "No se pudo actualizar ";
     echo "no se puede eliminar, comuniquese con el encargado del sistema. Gracias";

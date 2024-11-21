@@ -8,7 +8,7 @@ $sentencia = $pdo->prepare("DELETE FROM usuarios WHERE email = :email");
 $sentencia->bindParam(':email', $email);
 
 if ($sentencia->execute()) {
-    header("Location: " . $URL . "/web/administradores/");
+    header("Location: " . $URL . "/web/usuarios/");
 } else {
     echo "No se puede eliminar, comuníquese con el encargado del sistema. Gracias.";
 }

@@ -71,12 +71,12 @@ if (isset($_SESSION['u_usuario'])) {
     // Obtener datos de Costo por Lineamiento
     $lineamientoData = [];
     $query_lineamientos = $pdo->query("
-        SELECT l.nombre_lineamiento, SUM(t.costo) AS costo_total
-        FROM lineamiento l
-        INNER JOIN asignaciones a ON l.id_lineamiento = a.id_lineamiento
-        INNER JOIN tareas t ON a.id_asignacion = t.id_asignacion
-        GROUP BY l.nombre_lineamiento
-    ");
+    SELECT l.nombre_lineamiento, SUM(t.costo) AS costo_total
+    FROM lineamiento l
+    INNER JOIN asignaciones a ON l.id_lineamiento = a.id_lineamiento
+    INNER JOIN tareas t ON a.id_asignacion = t.id_asignacion
+    GROUP BY l.nombre_lineamiento
+");
     while ($lineamiento = $query_lineamientos->fetch(PDO::FETCH_ASSOC)) {
         $lineamientoData['labels'][] = $lineamiento['nombre_lineamiento'];
         $lineamientoData['data'][] = $lineamiento['costo_total'];
