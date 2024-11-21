@@ -14,6 +14,7 @@ if (isset($_SESSION['u_usuario'])) {
         $cargo_s = $usuario['cargo'];
         $cargo_pladeco_s = $usuario['cargo_pladeco'];
         $departamento_s = $usuario['departamento'];
+
     }
 
     // Obtener el nombre de la tarea seleccionada usando su id
@@ -104,7 +105,13 @@ if (isset($_SESSION['u_usuario'])) {
             $query->bindParam(':id_usuario', $id_usuario_s);
             $query->bindParam(':comentarios_usuario', $comentarios_usuario);
             $query->execute();
-
+            // Actualizar estado_respuesta a 'RESPONDIDO' para indicar que el usuario envió nuevos datos
+            $queryUpdateEstado = $pdo->prepare("UPDATE verificacion_tareas 
+                                    SET estado_respuesta = 'RESPONDIDO' 
+                                    WHERE id_tarea = :id_tarea AND id_usuario = :id_usuario");
+            $queryUpdateEstado->bindParam(':id_tarea', $id_tarea);
+            $queryUpdateEstado->bindParam(':id_usuario', $id_usuario_s);
+            $queryUpdateEstado->execute();
 
         } else {
 

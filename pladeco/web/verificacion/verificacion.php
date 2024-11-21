@@ -65,57 +65,60 @@ if (isset($_SESSION['u_usuario'])) {
                                                     $query->execute();
                                                     $verificaciones = $query->fetchAll(PDO::FETCH_ASSOC);
 
-                                                    foreach ($verificaciones as $verificacion) {
-                                                        $contador++;
-                                                        $estado = $verificacion['verificado'];
-                                                        $estado_texto = 'Sin revisar';
-                                                        if ($estado === 'SI') {
-                                                            $estado_texto = 'VERIFICADO';
-                                                        } elseif ($estado === 'NO') {
-                                                            $estado_texto = 'NO VERIFICADO';
-                                                        }
-                                                        $archivos = explode(",", $verificacion['medio_verificacion']); // Se asume que los archivos están separados por coma
-                                                
-                                                        ?>
-                                                        <tr>
-                                                            <td><?php echo $contador; ?></td>
-                                                            <td><?php echo htmlspecialchars($verificacion['nombre_tarea']); ?>
-                                                            </td>
-                                                            <td><?php echo htmlspecialchars($verificacion['usuario_nombre']); ?>
-                                                            </td>
-                                                            <td>
-                                                                <?php
-                                                                if (!empty($archivos)) {
-                                                                    foreach ($archivos as $archivo) {
-                                                                        if (!empty($archivo)) {
-                                                                            ?>
-                                                                            <a href="<?php echo '/pladeco/pladeco/uploads/verificaciones/' . htmlspecialchars(basename($archivo)); ?>"
-                                                                                target="_blank">
-                                                                                Ver archivo
-                                                                            </a><br>
-                                                                            <?php
-                                                                        }
-                                                                    }
-                                                                } else {
-                                                                    echo 'Sin archivo';
-                                                                }
-                                                                ?>
-                                                            </td>
-                                                            <td><?php echo $estado_texto; ?></td>
-                                                            <td>
-                                                                <!-- Botón para verificar la tarea -->
-                                                                <form action="comentarios.php" method="GET"
-                                                                    style="display: inline;">
-                                                                    <input type="hidden" name="id_verificacion"
-                                                                        value="<?php echo $verificacion['id_verificacion']; ?>">
-                                                                    <button type="submit" class="btn btn-info btn-xs">
-                                                                        <span class="fa fa-check"></span> Verificar
-                                                                    </button>
-                                                                </form>
-                                                            </td>
-                                                        </tr>
-                                                        <?php
-                                                    }
+                                                   foreach ($verificaciones as $verificacion) {
+    $contador++;
+    $estado = $verificacion['verificado'];
+    $estado_texto = 'Sin revisar';
+
+    if ($estado === 'SI') {
+        $estado_texto = 'VERIFICADO';
+    } elseif ($estado === 'NO') {
+        $estado_texto = 'NO VERIFICADO';
+    }
+
+    $icono = '';
+    if ($estado === 'NO' && $verificacion['estado_respuesta'] == "RESPONDIDO") {
+        $icono = '<span class="fa fa-exclamation-circle text-success" title="Nuevos archivos y comentarios de usuario"></span>';
+    } elseif ($estado === 'NO' && $verificacion['estado_respuesta'] == "SIN_RESPUESTA") {
+        $icono = '<span class="fa fa-comment-dots text-warning" title="Envío de comentarios"></span>';
+    }
+    ?>
+    <tr>
+        <td><?php echo $contador; ?> <?php echo $icono; ?></td>
+        <td><?php echo htmlspecialchars($verificacion['nombre_tarea']); ?></td>
+        <td><?php echo htmlspecialchars($verificacion['usuario_nombre']); ?></td>
+        <td>
+            <?php
+            $archivos = explode(",", $verificacion['medio_verificacion']);
+            if (!empty($archivos)) {
+                foreach ($archivos as $archivo) {
+                    if (!empty($archivo)) {
+                        ?>
+                        <a href="<?php echo '/pladeco/pladeco/uploads/verificaciones/' . htmlspecialchars(basename($archivo)); ?>" target="_blank">
+                            Ver archivo
+                        </a><br>
+                        <?php
+                    }
+                }
+            } else {
+                echo 'Sin archivo';
+            }
+            ?>
+        </td>
+        <td><?php echo $estado_texto; ?></td>
+        <td>
+            <form action="comentarios.php" method="GET" style="display: inline;">
+                <input type="hidden" name="id_verificacion" value="<?php echo $verificacion['id_verificacion']; ?>">
+                <button type="submit" class="btn btn-info btn-xs">
+                    <span class="fa fa-check"></span> Verificar
+                </button>
+            </form>
+        </td>
+    </tr>
+    <?php
+}
+
+                                                    
                                                     ?>
                                                 </tbody>
                                             </table>

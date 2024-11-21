@@ -16,8 +16,8 @@ if (isset($_SESSION['u_usuario'])) {
         $departamento_s = $usuario['departamento'];
     }
 
-    // Consultar las tareas verificadas
-    $query2 = $pdo->prepare("SELECT t.* FROM tareas t 
+    // Consultar las tareas verificadas, incluyendo la fecha de verificación
+    $query2 = $pdo->prepare("SELECT t.*, v.fecha_verificacion FROM tareas t 
                              JOIN asignaciones a ON t.id_asignacion = a.id_asignacion 
                              JOIN verificacion_tareas v ON t.id_tarea = v.id_tarea 
                              WHERE a.id_usuario = :id_usuario AND v.verificado = 'SI'");
@@ -56,6 +56,8 @@ if (isset($_SESSION['u_usuario'])) {
                                                         <th>Descripción</th>
                                                         <th>Fecha de Inicio</th>
                                                         <th>Fecha de Fin</th>
+                                                        <th>Fecha de Verificación</th>
+                                                        <!-- Nueva columna para mostrar la fecha -->
                                                     </tr>
                                                 </thead>
                                                 <tbody>
@@ -71,6 +73,8 @@ if (isset($_SESSION['u_usuario'])) {
                                                             </td>
                                                             <td><?php echo htmlspecialchars($tarea['fecha_inicio']); ?></td>
                                                             <td><?php echo htmlspecialchars($tarea['fecha_fin']); ?></td>
+                                                            <td><?php echo htmlspecialchars($tarea['fecha_verificacion']); ?>
+                                                            </td> <!-- Mostrar la fecha de verificación -->
                                                         </tr>
                                                         <?php
                                                     }

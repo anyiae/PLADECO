@@ -6,10 +6,21 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $comentarios_admin = $_POST['comentarios_admin'];
     $verificado = $_POST['verificado'];
 
-    // Actualizar los datos en la base de datos
-    $query = $pdo->prepare("UPDATE verificacion_tareas 
-                            SET verificado = :verificado, comentarios_admin = :comentarios_admin, fecha_verificacion = NOW()
-                            WHERE id_verificacion = :id_verificacion");
+    // Verificar si el estado es "SI" (Verificado)
+    if ($verificado == 'SI') {
+        // Actualizar los datos en la base de datos incluyendo la fecha de verificación
+        $query = $pdo->prepare("UPDATE verificacion_tareas 
+                                SET verificado = :verificado, comentarios_admin = :comentarios_admin, 
+                                    fecha_verificacion = NOW(), estado_respuesta = 'SIN_RESPUESTA'
+                                WHERE id_verificacion = :id_verificacion");
+    } else {
+        // Si no está verificado, solo se actualizan los comentarios y el estado de respuesta
+        $query = $pdo->prepare("UPDATE verificacion_tareas 
+                                SET verificado = :verificado, comentarios_admin = :comentarios_admin, 
+                                    estado_respuesta = 'SIN_RESPUESTA'
+                                WHERE id_verificacion = :id_verificacion");
+    }
+
     $query->bindParam(':verificado', $verificado);
     $query->bindParam(':comentarios_admin', $comentarios_admin);
     $query->bindParam(':id_verificacion', $id_verificacion);
