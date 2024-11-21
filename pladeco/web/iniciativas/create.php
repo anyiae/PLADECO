@@ -130,33 +130,33 @@ if (isset($_SESSION['u_usuario'])) {
                 // Agregar tarea
                 $('#btn_agregar_tarea, #btn_agregar_nueva_tarea').click(function () {
                     $('#tareas_container').append(`
-                                    <div class="form-group tarea-item">
-                                        <label>Nombre de la tarea</label>
-                                        <input type="text" class="form-control" name="nombre_tarea[]" placeholder="Nombre de la tarea" required>
+                                        <div class="form-group tarea-item">
+                                            <label>Nombre de la tarea</label>
+                                            <input type="text" class="form-control" name="nombre_tarea[]" placeholder="Nombre de la tarea" required>
 
-                                        <label>Descripción de la tarea</label>
-                                        <input type="text" class="form-control" name="descripcion_tarea[]" placeholder="Descripción de la tarea" required>
+                                            <label>Descripción de la tarea</label>
+                                            <input type="text" class="form-control" name="descripcion_tarea[]" placeholder="Descripción de la tarea" required>
 
-                                        <label>Fecha de inicio</label>
-                                        <input type="datetime-local" name="fecha_inicio[]" class="form-control" required>
+                                            <label>Fecha de inicio</label>
+                                            <input type="datetime-local" name="fecha_inicio[]" class="form-control" required>
 
-                                        <label>Fecha de fin</label>
-                                        <input type="datetime-local" name="fecha_fin[]" class="form-control" required>
+                                            <label>Fecha de fin</label>
+                                            <input type="datetime-local" name="fecha_fin[]" class="form-control" required>
 
-                                        <label>Estado de la tarea</label>
-                                        <select class="form-control" name="estado_tarea[]" required>
-                                            <option value="pendiente">Pendiente</option>
-                                            <option value="en_progreso">En progreso</option>
-                                            <option value="completada">Completada</option>
-                                        </select>
+                                            <label>Estado de la tarea</label>
+                                            <select class="form-control" name="estado_tarea[]" required>
+                                                <option value="pendiente">Pendiente</option>
+                                                <option value="en_progreso">En progreso</option>
+                                                <option value="completada">Completada</option>
+                                            </select>
 
-                                        <label>Costo de la tarea</label>
-                                        <input type="number" class="form-control" name="costo_tarea[]" placeholder="Costo de la tarea" required>
+                                            <label>Costo de la tarea</label>
+                                            <input type="number" class="form-control" name="costo_tarea[]" placeholder="Costo de la tarea" required>
 
-                                        <hr> <!-- Separador para las tareas -->
-                                        <button type="button" class="btn btn-danger btn_eliminar_tarea">Eliminar Tarea</button>
-                                    </div>
-                                `);
+                                            <hr> <!-- Separador para las tareas -->
+                                            <button type="button" class="btn btn-danger btn_eliminar_tarea">Eliminar Tarea</button>
+                                        </div>
+                                    `);
                 });
 
                 // Evento para eliminar tarea

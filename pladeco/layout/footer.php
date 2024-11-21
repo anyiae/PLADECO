@@ -15,7 +15,7 @@
     .main-footer {
         position: relative;
         /* Asegura que el footer no se desplace */
-        top: 50px;
+        top: 70px;
         bottom: 0;
         /* Asegura que el footer esté siempre en la parte inferior */
         left: 300px;
