@@ -420,6 +420,14 @@ if (strpos($current_path, 'web/index.php') !== false || strpos($current_path, 's
                         <span class="nav-link-text ms-1">Verificados</span>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="<?php echo $URL; ?>../app/templeates/docs/manualdeusuario.pdf" class="nav-link active"
+                        download>
+                        <i class="fas fa-book text-dark"></i> <!-- Icono de verificados -->
+                        <span class="nav-link-text ms-1">Manual de Usuario</span>
+                    </a>
+                </li>
+
             <?php } ?>
 
 

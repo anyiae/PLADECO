@@ -23,6 +23,25 @@ if (isset($_SESSION['u_usuario'])) {
     <head>
         <?php include('../../layout/head.php'); ?>
         <title>Mis Verificaciones | PLADECO</title>
+        <style>
+            /* Evita el desbordamiento en las celdas de la tabla */
+            .table td,
+            .table th {
+                white-space: normal;
+                /* Permite que el texto se divida en varias líneas */
+                word-wrap: break-word;
+                /* Permite que el texto largo se ajuste dentro de la celda */
+            }
+
+            /* Opcional: Ajusta la altura de las filas si el contenido se expande mucho */
+            .table td {
+                word-break: break-word;
+                max-width: 200px;
+                /* Puedes ajustar el tamaño de las celdas */
+                overflow: hidden;
+                text-overflow: ellipsis;
+            }
+        </style>
     </head>
 
     <body class="hold-transition sidebar-mini layout-fixed">
