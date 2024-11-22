@@ -20,11 +20,13 @@ if (isset($_SESSION['u_usuario'])) {
     // Obtener el nombre de la tarea seleccionada usando su id
     if (isset($_GET['id_tarea'])) {
         $id_tarea = $_GET['id_tarea'];
-        $queryTarea = $pdo->prepare("SELECT nombre_tarea FROM tareas WHERE id_tarea = :id_tarea");
+        $queryTarea = $pdo->prepare("SELECT nombre_tarea, descripcion_tarea FROM tareas WHERE id_tarea = :id_tarea");
         $queryTarea->bindParam(':id_tarea', $id_tarea);
         $queryTarea->execute();
         $tarea = $queryTarea->fetch(PDO::FETCH_ASSOC);
         $nombre_tarea = $tarea['nombre_tarea'];
+        $descripcion_tarea = $tarea['descripcion_tarea'];
+
     } else {
         echo "ID de tarea no especificado.";
         exit();
@@ -148,6 +150,11 @@ if (isset($_SESSION['u_usuario'])) {
                                             <input type="text" name="nombre_tarea" class="form-control"
                                                 value="<?php echo htmlspecialchars($nombre_tarea); ?>" disabled>
                                             <input type="hidden" name="id_tarea" value="<?php echo $id_tarea; ?>">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="descripcion_tarea">Descripción de la Tarea:</label>
+                                            <textarea name="descripcion_tarea" class="form-control" rows="3"
+                                                disabled><?php echo htmlspecialchars($descripcion_tarea); ?></textarea>
                                         </div>
 
                                         <div class="form-group">
