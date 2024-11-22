@@ -31,6 +31,15 @@ if (isset($_SESSION['u_usuario'])) {
     <head>
         <?php include('../../layout/head.php'); ?>
         <title>Tareas Verificadas | PLADECO</title>
+        <style>
+            .table td.wrap {
+                max-width: 200px;
+                white-space: normal;
+                word-wrap: break-word;
+                overflow-wrap: break-word;
+                overflow-y: auto;
+            }
+        </style>
     </head>
 
     <body class="hold-transition sidebar-mini layout-fixed">
@@ -68,8 +77,10 @@ if (isset($_SESSION['u_usuario'])) {
                                                         ?>
                                                         <tr>
                                                             <td><?php echo $contador; ?></td>
-                                                            <td><?php echo htmlspecialchars($tarea['nombre_tarea']); ?></td>
-                                                            <td><?php echo htmlspecialchars($tarea['descripcion_tarea']); ?>
+                                                            <td class="wrap">
+                                                                <?php echo htmlspecialchars($tarea['nombre_tarea']); ?></td>
+                                                            <td class="wrap">
+                                                                <?php echo htmlspecialchars($tarea['descripcion_tarea']); ?>
                                                             </td>
                                                             <td><?php echo htmlspecialchars($tarea['fecha_inicio']); ?></td>
                                                             <td><?php echo htmlspecialchars($tarea['fecha_fin']); ?></td>

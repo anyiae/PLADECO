@@ -65,18 +65,26 @@ if (isset($_SESSION['u_usuario'])) {
 
     // Consulta de tareas con filtros
     $queryTareas = $pdo->prepare("
-        SELECT t.id_tarea, t.nombre_tarea, u.nombre AS usuario, l.nombre_lineamiento, i.nombre_iniciativa
-        FROM tareas t
-        JOIN asignaciones a ON t.id_asignacion = a.id_asignacion
-        JOIN usuarios u ON a.id_usuario = u.id
-        JOIN lineamiento l ON a.id_lineamiento = l.id_lineamiento
-        JOIN iniciativas i ON t.id_iniciativa = i.id_iniciativa
-        WHERE (:usuario = '' OR u.nombre = :usuario)
+    SELECT 
+        t.id_tarea, 
+        t.nombre_tarea, 
+        u.nombre AS usuario, 
+        l.nombre_lineamiento, 
+        i.nombre_iniciativa,
+        vt.medio_verificacion
+    FROM tareas t
+    JOIN asignaciones a ON t.id_asignacion = a.id_asignacion
+    JOIN usuarios u ON a.id_usuario = u.id
+    JOIN lineamiento l ON a.id_lineamiento = l.id_lineamiento
+    JOIN iniciativas i ON t.id_iniciativa = i.id_iniciativa
+    LEFT JOIN verificacion_tareas vt ON t.id_tarea = vt.id_tarea
+    WHERE 
+        (:usuario = '' OR u.nombre = :usuario)
         AND (:lineamiento = '' OR l.nombre_lineamiento = :lineamiento)
         AND (:iniciativa = '' OR i.nombre_iniciativa = :iniciativa)
-        LIMIT :limit OFFSET :offset
-
-    ");
+        AND (vt.verificado IS NULL OR vt.verificado != 'SI')
+    LIMIT :limit OFFSET :offset
+");
     $queryTareas->bindValue(':usuario', $filtro_usuario, PDO::PARAM_STR);
     $queryTareas->bindValue(':lineamiento', $filtro_lineamiento, PDO::PARAM_STR);
     $queryTareas->bindValue(':iniciativa', $filtro_iniciativa, PDO::PARAM_STR);
@@ -84,6 +92,7 @@ if (isset($_SESSION['u_usuario'])) {
     $queryTareas->bindValue(':offset', $offset, PDO::PARAM_INT);
     $queryTareas->execute();
     $tareas = $queryTareas->fetchAll(PDO::FETCH_ASSOC);
+
     ?>
 
     <!DOCTYPE html>
@@ -92,6 +101,18 @@ if (isset($_SESSION['u_usuario'])) {
     <head>
         <?php include('../../layout/head.php'); ?>
         <title>Listado de Tareas | PLADECO</title>
+        <style>
+            .table td.truncate {
+                max-width: 200px;
+                /* Ajusta el ancho máximo según tus necesidades */
+                white-space: nowrap;
+                /* Evita que el texto salte a la siguiente línea */
+                overflow: hidden;
+                /* Oculta el texto que excede el ancho máximo */
+                text-overflow: ellipsis;
+                /* Agrega puntos suspensivos al final */
+            }
+        </style>
     </head>
 
     <body class="g-sidenav-show bg-gray-100">
@@ -173,10 +194,25 @@ if (isset($_SESSION['u_usuario'])) {
                                         <tbody>
                                             <?php foreach ($tareas as $tarea): ?>
                                                 <tr>
-                                                    <td><?php echo htmlspecialchars($tarea['id_tarea']); ?></td>
-                                                    <td><?php echo htmlspecialchars($tarea['nombre_tarea']); ?></td>
+                                                    <td>
+                                                        <?php echo htmlspecialchars($tarea['id_tarea']); ?>
+                                                        <?php if (!empty($tarea['medio_verificacion'])): ?>
+                                                            <i class="fas fa-exclamation-circle text-warning ms-2"
+                                                                data-bs-toggle="tooltip" data-bs-placement="top"
+                                                                title="Hay un medio de verificación. Revisa la pestaña Verificaciones!">
+                                                            </i>
+                                                        <?php endif; ?>
+
+                                                    </td>
+                                                    <td class="truncate"
+                                                        title="<?php echo htmlspecialchars($tarea['nombre_tarea']); ?>">
+                                                        <?php echo htmlspecialchars($tarea['nombre_tarea']); ?>
+                                                    </td>
+
                                                     <td><?php echo htmlspecialchars($tarea['usuario']); ?></td>
-                                                    <td><?php echo htmlspecialchars($tarea['nombre_lineamiento']); ?></td>
+                                                    <td>
+                                                        <?php echo htmlspecialchars($tarea['nombre_lineamiento']); ?>
+                                                    </td>
                                                     <td><?php echo htmlspecialchars($tarea['nombre_iniciativa']); ?></td>
                                                     <td>
                                                         <a href="ver_tarea.php?id_tarea=<?php echo $tarea['id_tarea']; ?>"

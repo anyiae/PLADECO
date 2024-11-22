@@ -31,6 +31,15 @@ if (isset($_SESSION['u_usuario'])) {
     <head>
         <?php include('../../layout/head.php'); ?>
         <title>Tareas Verificadas | PLADECO</title>
+        <style>
+            .table td.wrap {
+                max-width: 200px;
+                white-space: normal;
+                word-wrap: break-word;
+                overflow-wrap: break-word;
+                overflow-y: auto;
+            }
+        </style>
     </head>
 
     <body class="g-sidenav-show bg-gray-100">
@@ -67,7 +76,8 @@ if (isset($_SESSION['u_usuario'])) {
                                                         ?>
                                                         <tr>
                                                             <td><?php echo $contador; ?></td>
-                                                            <td><?php echo htmlspecialchars($verificado['nombre_tarea']); ?>
+                                                            <td class="wrap">
+                                                                <?php echo htmlspecialchars($verificado['nombre_tarea']); ?>
                                                             </td>
                                                             <td><?php echo htmlspecialchars($verificado['usuario_nombre']); ?>
                                                             </td>

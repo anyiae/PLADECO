@@ -24,6 +24,18 @@ if (isset($_SESSION['u_usuario'])) {
     <head>
         <?php include('../../layout/head.php'); ?>
         <title>Iniciativas | PLADECO </title>
+        <style>
+            .table td.truncate {
+                max-width: 200px;
+                /* Ajusta el ancho máximo según tus necesidades */
+                white-space: nowrap;
+                /* Evita que el texto salte a la siguiente línea */
+                overflow: hidden;
+                /* Oculta el texto que excede el ancho máximo */
+                text-overflow: ellipsis;
+                /* Agrega puntos suspensivos al final */
+            }
+        </style>
     </head>
 
     <body class="g-sidenav-show bg-gray-100">
@@ -66,11 +78,14 @@ if (isset($_SESSION['u_usuario'])) {
                                                     ?>
                                                     <tr>
                                                         <td><?php echo $contador; ?></td>
-                                                        <td><?php echo htmlspecialchars($iniciativa['nombre_iniciativa']); ?>
+                                                        <td class="truncate">
+                                                            <?php echo htmlspecialchars($iniciativa['nombre_iniciativa']); ?>
                                                         </td>
-                                                        <td><?php echo htmlspecialchars($iniciativa['descripcion_iniciativa']); ?>
+                                                        <td class="truncate">
+                                                            <?php echo htmlspecialchars($iniciativa['descripcion_iniciativa']); ?>
                                                         </td>
-                                                        <td><?php echo htmlspecialchars($iniciativa['nombre_lineamiento']); ?>
+                                                        <td class="truncate">
+                                                            <?php echo htmlspecialchars($iniciativa['nombre_lineamiento']); ?>
                                                         </td>
 
                                                         <td>

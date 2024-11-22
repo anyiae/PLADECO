@@ -26,6 +26,18 @@ if (isset($_SESSION['u_usuario'])) {
     <head>
         <?php include('../../layout/head.php'); ?>
         <title>Verificaciones de Tareas | PLADECO</title>
+                <style>
+            .table td.truncate {
+                max-width: 200px;
+                /* Ajusta el ancho máximo según tus necesidades */
+                white-space: nowrap;
+                /* Evita que el texto salte a la siguiente línea */
+                overflow: hidden;
+                /* Oculta el texto que excede el ancho máximo */
+                text-overflow: ellipsis;
+                /* Agrega puntos suspensivos al final */
+            }
+        </style>
     </head>
 
     <body class="g-sidenav-show bg-gray-100">
@@ -85,7 +97,7 @@ if (isset($_SESSION['u_usuario'])) {
     ?>
     <tr>
         <td><?php echo $contador; ?> <?php echo $icono; ?></td>
-        <td><?php echo htmlspecialchars($verificacion['nombre_tarea']); ?></td>
+        <td class="truncate"><?php echo htmlspecialchars($verificacion['nombre_tarea']); ?></td>
         <td><?php echo htmlspecialchars($verificacion['usuario_nombre']); ?></td>
         <td>
             <?php

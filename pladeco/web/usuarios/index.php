@@ -24,6 +24,18 @@ if (isset($_SESSION['u_usuario'])) {
     <head>
         <?php include('../../layout/head.php'); ?>
         <title>Sistema de Gestión | PLADECO </title>
+        <style>
+            .table td.truncate {
+                max-width: 200px;
+                /* Ajusta el ancho máximo según tus necesidades */
+                white-space: nowrap;
+                /* Evita que el texto salte a la siguiente línea */
+                overflow: hidden;
+                /* Oculta el texto que excede el ancho máximo */
+                text-overflow: ellipsis;
+                /* Agrega puntos suspensivos al final */
+            }
+        </style>
     </head>
 
     <body class="g-sidenav-show bg-gray-100">
@@ -74,10 +86,10 @@ if (isset($_SESSION['u_usuario'])) {
                                                     ?>
                                                     <tr>
                                                         <td><?php echo $contador; ?></td>
-                                                        <td><?php echo $nombre . " " . $apellido; ?></td>
-                                                        <td><?php echo $cargo_pladeco; ?></td>
-                                                        <td><?php echo $cargo; ?></td>
-                                                        <td><?php echo $departamento; ?></td>
+                                                        <td class="truncate"><?php echo $nombre . " " . $apellido; ?></td>
+                                                        <td class="truncate"><?php echo $cargo_pladeco; ?></td>
+                                                        <td class="truncate"><?php echo $cargo; ?></td>
+                                                        <td class="truncate"><?php echo $departamento; ?></td>
                                                         <td><?php echo $email; ?></td>
                                                         <td>
                                                             <a href="update.php?id=<?php echo $id_usuario; ?>"

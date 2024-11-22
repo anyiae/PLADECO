@@ -36,12 +36,14 @@ if (isset($_SESSION['u_usuario'])) {
             }
 
             .table td.descripcion {
-                white-space: normal;
-                /* Asegura que el texto de descripción se ajuste */
-                word-wrap: break-word;
-                /* Permite el ajuste de palabras largas */
-                overflow-wrap: break-word;
-                /* Compatibilidad adicional */
+                max-width: 200px;
+                /* Ajusta el ancho máximo según tus necesidades */
+                white-space: nowrap;
+                /* Evita que el texto salte a la siguiente línea */
+                overflow: hidden;
+                /* Oculta el texto que excede el ancho máximo */
+                text-overflow: ellipsis;
+                /* Agrega puntos suspensivos al final */
             }
 
             .verification-icon {
@@ -156,12 +158,16 @@ if (isset($_SESSION['u_usuario'])) {
                                                                     </div>
                                                                 <?php endif; ?>
                                                             </td>
-                                                            <td><?php echo htmlspecialchars($tarea['nombre_tarea']); ?></td>
+                                                            <td class="descripcion">
+                                                                <?php echo htmlspecialchars($tarea['nombre_tarea']); ?>
+                                                            </td>
                                                             <td class="descripcion">
                                                                 <?php echo htmlspecialchars($tarea['descripcion_tarea']); ?>
                                                             </td>
                                                             </td>
-                                                            <td><?php echo htmlspecialchars($tarea['fecha_inicio']); ?></td>
+                                                            <td class="descripcion">
+                                                                <?php echo htmlspecialchars($tarea['fecha_inicio']); ?>
+                                                            </td>
                                                             <td><?php echo htmlspecialchars($tarea['fecha_fin']); ?></td>
                                                             <td>
                                                                 <?php

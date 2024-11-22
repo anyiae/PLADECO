@@ -37,6 +37,15 @@ if (isset($_SESSION['u_usuario'])) {
             <head>
                 <?php include('../../layout/head.php'); ?>
                 <title>Comentarios de Verificación | PLADECO</title>
+                <style>
+                    .table td.wrap {
+                        max-width: 200px;
+                        white-space: normal;
+                        word-wrap: break-word;
+                        overflow-wrap: break-word;
+                        overflow-y: auto;
+                    }
+                </style>
             </head>
 
             <body class="g-sidenav-show bg-gray-100">
@@ -62,11 +71,14 @@ if (isset($_SESSION['u_usuario'])) {
                                                 <table class="table table-bordered">
                                                     <tr>
                                                         <th>Nombre de la Tarea</th>
-                                                        <td><?php echo htmlspecialchars($verificacion['nombre_tarea']); ?></td>
+                                                        <td class="wrap"><?php echo htmlspecialchars($verificacion['nombre_tarea']); ?>
+                                                        </td>
                                                     </tr>
                                                     <tr>
                                                         <th>Descripción de la Tarea</th>
-                                                        <td><?php echo htmlspecialchars($verificacion['descripcion_tarea']); ?></td>
+                                                        <td class="wrap">
+                                                            <?php echo htmlspecialchars($verificacion['descripcion_tarea']); ?>
+                                                        </td>
                                                     </tr>
                                                     <tr>
                                                         <th>Usuario que Realizó la Tarea</th>
