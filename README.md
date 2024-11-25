@@ -1,66 +1,68 @@
-PLADECO - Sistema de Gestión y Seguimiento
+
+# Sistema de Gestión PRAXIS LTDA
 
 PLADECO es un sistema desarrollado para Praxis LTDA, una consultora de sociólogos, cuyo objetivo es facilitar la administración de Planes de Desarrollo Comunal (PLADECO) para las distintas comunas de Chile, actualmente, siendo la de Pedro Aguirre Cerda. Este sistema permite la gestión de tareas, seguimiento de avances, verificación de actividades, y notificaciones, todo ello adaptado a los diferentes roles de usuarios y administradores.
 
-El sistema está diseñado con una estructura modular y funcional basada en la metodología Scrum, utilizando HTML, CSS, JavaScript, MySQL y PHP. Incluye funcionalidades como un dashboard para administradores, un sistema de verificación de tareas y la posibilidad de enviar notificaciones automáticas por correo electrónico.
 
-Funcionalidades
-Gestión de Tareas: Asignación de tareas a usuarios, seguimiento y verificación de tareas.
-Dashboard de Administración: Gráficos interactivos y reportes descargables en Excel para el administrador.
-Semáforo de Estado de Tareas: Visualización de tareas a través de un semáforo que muestra el estado basado en las fechas de inicio y fin.
-Verificación de Tareas: Los usuarios pueden subir archivos y añadir comentarios como parte del proceso de verificación, que luego será revisado por el administrador.
-Notificaciones por Correo: Envío automático de correos para asignación de tareas y actualizaciones de estado.
-Manual de Usuario y Administrador: Guías completas disponibles para facilitar la navegación del sistema según el rol.
+## ¿Que incluye?
 
-Instalación
-Sigue estos pasos para instalar el proyecto en tu entorno local:
-Clonar el repositorio:
+- Registro e inicio de sesión con roles diferenciados.
+- Sistema de tareas: Agregar tareas a usuarios, verificar tareas, corregirlas.
+- Gestión de Lineamientos e Iniciativas.
+- Dashboard de reportes gráficos descargables en Excel..
+- Envío de verificación de tareas por parte de los usuarios.
 
+
+## Autores
+
+- [Antonia Galaz](https://www.github.com/anyiae)
+
+
+## Instalación
+
+Para instalar el proyecto, primero descargaremos la base de datos llamada `pladeco.sql` e importarla a MySQL PHPMyAdmin. Seleccionaremos la opción "Nueva" en la barra lateral izquierda, e importaremos la base de datos.
+
+##
+Luego, iremos a Visual Studio Code y clonaremos el proyecto dentro de la carpeta htdocs de la carpeta donde está instalado XAMPP, creando una carpeta llamada `PLADECO`. No se puede cambiar el nombre, para asegurar el funcionamiento de las funcionalidades.
+
+```bash
 git clone https://github.com/anyiae/PLADECO.git
+```
+##
+Ahora, instalaremos las dependencias, la cual están en Composer. Este se descargará desde su página oficial.
 
-Instalar dependencias con Composer:
-Asegúrate de tener Composer instalado en tu máquina. Luego, desde la raíz del proyecto, ejecuta:
-composer install
+```bash
+https://getcomposer.org/
+```
+Luego de descargarlo e instalarlo en su pc, podrá utilizar la página.
+##
 
-Configurar la base de datos:
+Ahora, podremos usar el link en el navegador, lo cual nos redireccionará a la página principal.
+```bash
+http://localhost/pladeco/pladeco/
+```
+Con esto, estará lista nuestra sesión.
 
-Crea una base de datos llamada pladeco en MySQL.
 
-Puedes crearla a través de PHPMyAdmin o usando la consola de MySQL con el siguiente comando:
 
-sql
-CREATE DATABASE pladeco;
+## Credenciales
 
-Importar la base de datos:
 
-Descarga el archivo pladeco.sql que se encuentra en el repositorio.
-Importa el archivo SQL a tu base de datos pladeco. Si usas PHPMyAdmin, sigue estos pasos:
-Inicia sesión en PHPMyAdmin.
-Selecciona la base de datos pladeco.
-Haz clic en la pestaña Importar.
-Selecciona el archivo pladeco.sql y haz clic en Ejecutar.
 
-Asegúrate de tener XAMPP o tu servidor PHP en ejecución. Coloca el proyecto en la carpeta htdocs de XAMPP o el directorio correspondiente en tu servidor web.
+| Tipo | Correo     | Contraseña              |
+| :-------- | :------- | :------------------------- |
+| `usuario` | `usuario@admin.cl` | 123 |
 
-Acceder a la aplicación:
 
-Abre tu navegador y accede a la siguiente URL:
 
-http://localhost/PLADECO/pladeco
 
-Manuales
-Manual de Usuario: Guía detallada para los usuarios sobre cómo navegar y usar el sistema.
-Manual de Administrador: Guía para administradores sobre cómo gestionar tareas, usuarios y reportes.
-Acceso
+| Tipo | Correo     | Contraseña                       |
+| :-------- | :------- | :-------------------------------- |
+| `administrador`      | `admin@admin.cl` | 123 |
 
-El sistema cuenta con dos roles principales:
-Administrador: Accede a funcionalidades completas de gestión, verificación de tareas, y generación de reportes.
-Usuario: Puede visualizar las tareas asignadas, realizar verificaciones y enviar archivos de respaldo.
 
-Para iniciar sesión, ingresa las credenciales proporcionadas para cada rol.
 
-Tecnologías Utilizadas
-Frontend: HTML, CSS, JavaScript (AdminLTE 3, Bootstrap 5)
-Backend: PHP, Composer
-Base de Datos: MySQL
-Librerías: PHP Mailer, Chart.js, PHPExcel
+## 👩‍💻 Tecnologías utilizadas
+
+| ![JavaScript](https://shields.io/badge/JavaScript-F7DF1E?logo=JavaScript&logoColor=000&style=flat-square) | ![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=flat-square&logo=css3&logoColor=white) | ![PHP](https://shields.io/badge/-PHP-777BB4?style=flat-square&logo=php&logoColor=white) | ![HTML](https://shields.io/badge/HTML-f06529?logo=html5&logoColor=white&style=flat-square) |
+|:-------------------------------------------------------------------------------------------------------:|:-------------------------------------------------------------------------------------------:|:-------------------------------------------------------------------------------------:|:--------------------------------------------------------------------------------------:|
