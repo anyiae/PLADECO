@@ -9,7 +9,8 @@ PLADECO es un sistema desarrollado para Praxis LTDA, una consultora de sociólog
 - Registro e inicio de sesión con roles diferenciados.
 - Sistema de tareas: Agregar tareas a usuarios, verificar tareas, corregirlas.
 - Gestión de Lineamientos e Iniciativas.
-- Dashboard de reportes gráficos descargables en Excel..
+- Dashboard de reportes gráficos descargables en Excel.
+- Envio de correos electrónicos en Contacto y aviso de tareas.
 - Envío de verificación de tareas por parte de los usuarios.
 
 
