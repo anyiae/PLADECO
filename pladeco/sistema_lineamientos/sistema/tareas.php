@@ -82,7 +82,7 @@ if (isset($_SESSION['u_usuario'])) {
     </head>
 
     <body class="hold-transition sidebar-mini layout-fixed">
-        <div class="wrapper" style="margin-left: 20px;">
+        <div class="wrapper" style="margin-left: 2px;">
             <?php include('../../layout/menu.php'); ?>
             <div class="content-wrapper">
                 <section class="content">

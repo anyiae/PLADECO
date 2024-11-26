@@ -49,6 +49,9 @@ if (strpos($current_path, 'web/index.php') !== false || strpos($current_path, 's
         background-color: #f6f9fc;
         box-shadow: none;
     }
+    body {
+    overflow-x: hidden;
+}
 
     .sidenav .navbar-nav>.nav-item .nav-link.active {
         color: #344767;

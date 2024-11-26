@@ -33,7 +33,7 @@ if (isset($_SESSION['u_usuario'])) {
             <div class="content-wrapper">
                 <section class="content">
                     <div class="container-fluid">
-                        <div class="container">
+                        <div class="container" style="margin-right:80px;">
                             <br>
                             <div class="card card-primary card-outline">
                                 <div class="card-header">

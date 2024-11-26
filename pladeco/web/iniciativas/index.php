@@ -116,7 +116,7 @@ if (isset($_SESSION['u_usuario'])) {
     </head>
 
     <body class="g-sidenav-show bg-gray-100">
-        <div class="wrapper" style="margin-left: 20px;">
+        <div class="wrapper" style="margin-left: 0px;">
             <?php include('../../layout/menu.php'); ?>
             <div class="content-wrapper">
                 <section class="content">

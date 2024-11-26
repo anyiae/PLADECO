@@ -104,7 +104,7 @@ if (isset($_SESSION['u_usuario'])) {
                 <!-- Main content -->
                 <section class="content">
                     <div class="container-fluid">
-                        <div class="container">
+                        <div class="container" >
                             <br>
 
                             <!-- Modal de advertencia si hay tareas "rojas" -->
@@ -131,7 +131,7 @@ if (isset($_SESSION['u_usuario'])) {
                                 </script>
                             <?php endif; ?>
 
-                            <div class="card card-primary card-outline">
+                            <div class="card card-primary card-outline" style="width: 900px; margin-left:180px;" >
                                 <div class="card-header">
                                     <h3 class="card-title"><span class="fa fa-user"></span> Usuario </h3>
                                 </div> <!-- /.card-body -->
