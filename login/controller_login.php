@@ -4,7 +4,9 @@ include('../app/config/config.php');
 $email = $_POST['email'];
 $password = $_POST['password'];
 
-session_start();
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
+}
 
 $query = $pdo->prepare("SELECT * FROM usuarios WHERE email = :email AND password = :password");
 $query->bindParam(':email', $email);
